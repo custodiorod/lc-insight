@@ -15,7 +15,7 @@ export function RemotionHeroPlayer({
   title = "Profissionalize-se na Construção Civil",
   subtitle = "Cursos completos e certificação oficial em todo o Brasil",
   autoPlay = true,
-  loop = false,
+  loop = true,
   className = "",
 }: RemotionHeroPlayerProps) {
   return (
