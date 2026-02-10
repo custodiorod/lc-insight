@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils"
 import { TestimonialCard, type TestimonialAuthor } from "@/components/ui/testimonial-card"
+import { useState } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface TestimonialsSectionProps {
   title: string
@@ -18,6 +20,17 @@ export function TestimonialsSection({
   testimonials,
   className
 }: TestimonialsSectionProps) {
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+
+  const scrollLeft = () => {
+    setScrollPosition(prev => Math.max(0, prev - 350))
+  }
+
+  const scrollRight = () => {
+    setScrollPosition(prev => prev + 350)
+  }
+
   return (
     <section className={cn(
       "py-12 sm:py-24 md:py-32 px-0",
@@ -33,9 +46,36 @@ export function TestimonialsSection({
           </p>
         </div>
 
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <div className="group flex overflow-hidden p-2 [--gap:1.5rem] [gap:var(--gap)] flex-row [--duration:60s]">
-            <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
+        <div className="relative flex w-full flex-col items-center justify-center">
+          {/* Botões de navegação */}
+          <button
+            onClick={scrollLeft}
+            className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#FFD700] text-[#003366] shadow-lg hover:bg-[#FFA500] hover:scale-110 transition-all duration-300 flex items-center justify-center group-hover:z-40"
+            aria-label="Scroll para esquerda"
+          >
+            <ChevronLeft size={24} className="md:w-8 md:h-8" />
+          </button>
+
+          <button
+            onClick={scrollRight}
+            className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#FFD700] text-[#003366] shadow-lg hover:bg-[#FFA500] hover:scale-110 transition-all duration-300 flex items-center justify-center group-hover:z-40"
+            aria-label="Scroll para direita"
+          >
+            <ChevronRight size={24} className="md:w-8 md:h-8" />
+          </button>
+
+          <div
+            className="group flex overflow-hidden p-2 [--gap:1.5rem] [gap:var(--gap)] flex-row [--duration:120s]"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            <div
+              className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row transition-transform duration-500"
+              style={{
+                transform: `translateX(-${scrollPosition}px)`,
+                animationPlayState: isPaused ? 'paused' : 'running'
+              }}
+            >
               {[...Array(8)].map((_, setIndex) => (
                 testimonials.map((testimonial, i) => (
                   <TestimonialCard
