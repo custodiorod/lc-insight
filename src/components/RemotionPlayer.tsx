@@ -1,9 +1,7 @@
 import { Player } from "@remotion/player";
 import { HeroVideo } from "@/remotion/HeroVideo";
-import { HeroVideoMobile } from "@/remotion/HeroVideoMobile";
 import { ConstructionAnimation } from "@/remotion/ConstructionAnimation";
 import { CourseCardAnimation } from "@/remotion/CourseCardAnimation";
-import { useState, useEffect } from "react";
 
 interface RemotionHeroPlayerProps {
   title?: string;
@@ -20,59 +18,25 @@ export function RemotionHeroPlayer({
   loop = false,
   className = "",
 }: RemotionHeroPlayerProps) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   return (
     <div className={`w-full ${className}`}>
-      {isMobile ? (
-        <Player
-          component={HeroVideoMobile}
-          inputProps={{ title, subtitle }}
-          durationInFrames={210}
-          compositionWidth={540}
-          compositionHeight={960}
-          fps={30}
-          autoPlay={autoPlay}
-          loop={loop}
-          controls={false}
-          style={{
-            width: "100%",
-            aspectRatio: "9/16",
-            maxHeight: "600px",
-            borderRadius: "1rem",
-            overflow: "hidden",
-            margin: "0 auto",
-          }}
-        />
-      ) : (
-        <Player
-          component={HeroVideo}
-          inputProps={{ title, subtitle }}
-          durationInFrames={210}
-          compositionWidth={1920}
-          compositionHeight={1080}
-          fps={30}
-          autoPlay={autoPlay}
-          loop={loop}
-          controls={false}
-          style={{
-            width: "100%",
-            aspectRatio: "16/9",
-            borderRadius: "1rem",
-            overflow: "hidden",
-          }}
-        />
-      )}
+      <Player
+        component={HeroVideo}
+        inputProps={{ title, subtitle }}
+        durationInFrames={210}
+        compositionWidth={1920}
+        compositionHeight={1080}
+        fps={30}
+        autoPlay={autoPlay}
+        loop={loop}
+        controls={false}
+        style={{
+          width: "100%",
+          aspectRatio: "16/9",
+          borderRadius: "1rem",
+          overflow: "hidden",
+        }}
+      />
     </div>
   );
 }
