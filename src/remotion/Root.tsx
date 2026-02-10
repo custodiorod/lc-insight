@@ -1,5 +1,6 @@
 import { Composition } from "remotion";
 import { HeroVideo } from "./HeroVideo";
+import { HeroVideoMobile } from "./HeroVideoMobile";
 import { ConstructionAnimation } from "./ConstructionAnimation";
 import { CourseCardAnimation } from "./CourseCardAnimation";
 
@@ -13,6 +14,18 @@ export const RemotionRoot = () => {
         fps={30}
         width={1920}
         height={1080}
+        defaultProps={{
+          title: "Profissionalize-se na Construção Civil",
+          subtitle: "Cursos completos e certificação oficial em todo o Brasil",
+        }}
+      />
+      <Composition
+        id="hero-video-mobile"
+        component={HeroVideoMobile}
+        durationInFrames={180}
+        fps={30}
+        width={540}
+        height={960}
         defaultProps={{
           title: "Profissionalize-se na Construção Civil",
           subtitle: "Cursos completos e certificação oficial em todo o Brasil",

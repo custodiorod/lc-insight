@@ -181,23 +181,24 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({ testimonials = de
             </motion.button>
           </div>
 
-          <div className="relative px-4 py-2" style={{ zIndex: 1 }}>
+          <div className="relative px-2 md:px-4 py-2" style={{ zIndex: 1 }}>
             <motion.div
               className="flex"
               animate={{ x: `-${currentIndex * (100 / visibleCount)}%` }}
-              transition={{ 
-                type: 'spring', 
-                stiffness: 70, 
-                damping: 20 
+              transition={{
+                type: 'spring',
+                stiffness: 70,
+                damping: 20
               }}
+              style={{ width: `${testimonials.length * (100 / visibleCount)}%` }}
             >
               {testimonials.map((testimonial) => (
                 <motion.div
                   key={testimonial.id}
-                  className={`flex-shrink-0 w-full ${
-                    visibleCount === 3 ? 'md:w-1/3' : 
-                    visibleCount === 2 ? 'md:w-1/2' : 'w-full'
-                  } px-2 py-2`}
+                  className={`flex-shrink-0 px-2 py-2 ${
+                    visibleCount === 3 ? 'w-1/3' :
+                    visibleCount === 2 ? 'w-1/2' : 'w-full'
+                  }`}
                   initial={{ opacity: 0.5, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4 }}
