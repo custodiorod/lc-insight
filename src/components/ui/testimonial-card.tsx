@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import { Quote } from "lucide-react"
 
 export interface TestimonialAuthor {
   name: string
@@ -26,31 +26,37 @@ export function TestimonialCard({
     <Card
       {...(href ? { href } : {})}
       className={cn(
-        "flex flex-col rounded-lg border-t",
-        "bg-gradient-to-b from-muted/50 to-muted/10",
-        "p-4 text-start sm:p-6",
-        "hover:from-muted/60 hover:to-muted/20",
+        "relative flex flex-col rounded-lg border-2 border-[#FFD700]/30",
+        "bg-white",
+        "p-6 text-start",
+        "hover:shadow-xl hover:border-[#FFD700]",
         "max-w-[320px] sm:max-w-[320px]",
-        "transition-colors duration-300",
+        "transition-all duration-300",
         className
       )}
     >
-      <div className="flex items-center gap-3">
-        <Avatar className="h-12 w-12">
-          <AvatarImage src={author.avatar} alt={author.name} />
-        </Avatar>
-        <div className="flex flex-col items-start">
-          <h3 className="text-md font-semibold leading-none">
-            {author.name}
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            {author.handle}
-          </p>
-        </div>
+      {/* Icone de citação decorativo */}
+      <div className="absolute top-4 right-4 text-[#FFD700]/20">
+        <Quote size={32} />
       </div>
-      <p className="sm:text-md mt-4 text-sm text-muted-foreground">
-        {text}
+
+      {/* Nome e curso */}
+      <div className="mb-4">
+        <h3 className="text-lg font-bold text-[#003366] leading-tight">
+          {author.name}
+        </h3>
+        <p className="text-sm font-medium text-[#0066CC]">
+          {author.handle}
+        </p>
+      </div>
+
+      {/* Texto do depoimento */}
+      <p className="text-base text-[#003366] leading-relaxed">
+        "{text}"
       </p>
+
+      {/* Badge decorativo */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0066CC] via-[#FFD700] to-[#0066CC] rounded-b-lg" />
     </Card>
   )
 }
