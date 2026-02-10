@@ -9,7 +9,7 @@ export const RemotionRoot = () => {
       <Composition
         id="hero-video"
         component={HeroVideo}
-        durationInFrames={150}
+        durationInFrames={180}
         fps={30}
         width={1920}
         height={1080}
@@ -21,7 +21,7 @@ export const RemotionRoot = () => {
       <Composition
         id="construction-animation"
         component={ConstructionAnimation}
-        durationInFrames={120}
+        durationInFrames={150}
         fps={30}
         width={400}
         height={300}
@@ -29,7 +29,7 @@ export const RemotionRoot = () => {
       <Composition
         id="course-card-animation"
         component={CourseCardAnimation}
-        durationInFrames={90}
+        durationInFrames={120}
         fps={30}
         width={600}
         height={400}

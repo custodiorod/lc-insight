@@ -15,7 +15,7 @@ export function RemotionHeroPlayer({
   title = "Profissionalize-se na Construção Civil",
   subtitle = "Cursos completos e certificação oficial em todo o Brasil",
   autoPlay = true,
-  loop = true,
+  loop = false,
   className = "",
 }: RemotionHeroPlayerProps) {
   return (
@@ -23,7 +23,7 @@ export function RemotionHeroPlayer({
       <Player
         component={HeroVideo}
         inputProps={{ title, subtitle }}
-        durationInFrames={150}
+        durationInFrames={180}
         compositionWidth={1920}
         compositionHeight={1080}
         fps={30}
@@ -49,14 +49,14 @@ interface RemotionConstructionPlayerProps {
 
 export function RemotionConstructionPlayer({
   autoPlay = true,
-  loop = true,
+  loop = false,
   className = "",
 }: RemotionConstructionPlayerProps) {
   return (
     <div className={`inline-block ${className}`}>
       <Player
         component={ConstructionAnimation}
-        durationInFrames={120}
+        durationInFrames={150}
         compositionWidth={400}
         compositionHeight={300}
         fps={30}
@@ -86,7 +86,7 @@ export function RemotionCourseCardPlayer({
   courseTitle,
   courseImage,
   autoPlay = false,
-  loop = true,
+  loop = false,
   className = "",
 }: RemotionCourseCardPlayerProps) {
   return (
@@ -94,7 +94,7 @@ export function RemotionCourseCardPlayer({
       <Player
         component={CourseCardAnimation}
         inputProps={{ courseTitle, courseImage }}
-        durationInFrames={90}
+        durationInFrames={120}
         compositionWidth={600}
         compositionHeight={400}
         fps={30}
