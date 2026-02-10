@@ -108,10 +108,10 @@ function HomePage() {
 
 
   const heroChecklist = [
-    { icon: <CheckCircle2 className="h-5 w-5" />, text: "Instituição reconhecida" },
-    { icon: <CheckCircle2 className="h-5 w-5" />, text: "Certificação válida nacionalmente" },
-    { icon: <CheckCircle2 className="h-5 w-5" />, text: "Cursos práticos" },
-    { icon: <CheckCircle2 className="h-5 w-5" />, text: "Comece do zero" },
+    { icon: <CheckCircle2 className="h-5 w-5 flex-shrink-0" />, text: "Instituição reconhecida", shortText: "Instituição reconhecida" },
+    { icon: <CheckCircle2 className="h-5 w-5 flex-shrink-0" />, text: "Certificação válida nacionalmente", shortText: "Certificação nacional" },
+    { icon: <CheckCircle2 className="h-5 w-5 flex-shrink-0" />, text: "Cursos práticos", shortText: "Cursos práticos" },
+    { icon: <CheckCircle2 className="h-5 w-5 flex-shrink-0" />, text: "Comece do zero", shortText: "Comece do zero" },
   ]
 
 
@@ -165,11 +165,14 @@ function HomePage() {
                 Ver cursos
               </Button>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-left max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 text-left max-w-3xl mx-auto">
               {heroChecklist.map((item, index) => (
-                <div key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg p-3 animate-fade-in-up">
+                <div key={index} className="flex items-center gap-2 md:gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-3 animate-fade-in-up">
                   {item.icon}
-                  <span className="text-sm">{item.text}</span>
+                  <span className="text-xs md:text-sm font-medium leading-tight">
+                    <span className="hidden md:inline">{item.text}</span>
+                    <span className="md:hidden">{item.shortText}</span>
+                  </span>
                 </div>
               ))}
             </div>

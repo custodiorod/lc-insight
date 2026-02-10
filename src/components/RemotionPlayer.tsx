@@ -38,7 +38,7 @@ export function RemotionHeroPlayer({
         <Player
           component={HeroVideoMobile}
           inputProps={{ title, subtitle }}
-          durationInFrames={180}
+          durationInFrames={210}
           compositionWidth={540}
           compositionHeight={960}
           fps={30}
@@ -58,7 +58,7 @@ export function RemotionHeroPlayer({
         <Player
           component={HeroVideo}
           inputProps={{ title, subtitle }}
-          durationInFrames={180}
+          durationInFrames={210}
           compositionWidth={1920}
           compositionHeight={1080}
           fps={30}

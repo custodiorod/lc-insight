@@ -31,6 +31,7 @@ export const HeroVideo = ({ title, subtitle }: { title: string; subtitle: string
 
   const titleY = interpolate(frame, [0, 25], [50, 0], {
     extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
   });
 
   // Animação de entrada do subtítulo
@@ -45,6 +46,7 @@ export const HeroVideo = ({ title, subtitle }: { title: string; subtitle: string
 
   const subtitleY = interpolate(frame, [15, 40], [30, 0], {
     extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
   });
 
   // Animação de pulse no badge
@@ -57,12 +59,14 @@ export const HeroVideo = ({ title, subtitle }: { title: string; subtitle: string
   const badgeScale = 1 + Math.sin(frame * 0.15) * 0.05;
 
   // Animação de zoom do background
-  const bgScale = interpolate(frame, [0, 150], [1, 1.1], {
+  const bgScale = interpolate(frame, [0, 200], [1, 1.1], {
     extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
   });
 
   const bgOpacity = interpolate(frame, [0, 20], [0, 1], {
     extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
   });
 
   // Elementos flutuantes com movimento mais fluido
@@ -114,6 +118,7 @@ export const HeroVideo = ({ title, subtitle }: { title: string; subtitle: string
 
   const cardsY = interpolate(frame, [55, 80], [40, 0], {
     extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
   });
 
   return (
