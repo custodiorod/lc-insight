@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { CheckCircle2, GraduationCap, Award, Users, MapPin, Zap, Wrench, HardHat } from "lucide-react"
 import { courses } from "@/data/courses"
 import CoursePage from "@/pages/CoursePage"
-import TestimonialSlider from "@/components/ui/testimonial-slider"
+import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee"
 import { GlowingEffect } from "@/components/ui/glowing-effect"
 import { FeaturesSectionWithCardGradient } from "@/components/ui/features-section-gradient"
 import { RemotionHeroPlayer, RemotionConstructionPlayer } from "@/components/RemotionPlayer"
@@ -15,19 +15,52 @@ import { motion } from "framer-motion"
 
 const testimonials = [
   {
-    name: "Carlos Silva",
-    course: "Eletricista Instalador",
-    text: "Ótimo curso! Aprendi muito na prática e hoje estou trabalhando na área.",
+    author: {
+      name: "Carlos Silva",
+      handle: "Eletricista Instalador",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "Ótimo curso! Aprendi muito na prática e hoje estou trabalhando na área. A metodologia de ensino é excelente e os instrutores são muito qualificados.",
   },
   {
-    name: "Ana Santos",
-    course: "Reparos e Reformas",
-    text: "O curso mudou minha vida. Hoje tenho meu próprio negócio de reparos.",
+    author: {
+      name: "Ana Santos",
+      handle: "Reparos e Reformas",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "O curso mudou minha vida. Hoje tenho meu próprio negócio de reparos. O conhecimento prático que adquiri foi essencial para meu sucesso.",
   },
   {
-    name: "João Oliveira",
-    course: "Mestre de Obras",
-    text: "Excelente formação. Os professores são muito experientes e o material é completo.",
+    author: {
+      name: "João Oliveira",
+      handle: "Mestre de Obras",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "Excelente formação. Os professores são muito experientes e o material é completo. Recomendo para quem quer trabalhar na construção civil.",
+  },
+  {
+    author: {
+      name: "Maria Souza",
+      handle: "Ar-Condicionado",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "Consegui meu primeiro emprego logo após terminar o curso. Super recomendo! A certificação é reconhecida em todo o Brasil.",
+  },
+  {
+    author: {
+      name: "Pedro Costa",
+      handle: "Energia Solar",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "O mercado está crescendo muito e o curso me preparou exatamente o que precisava. Hoje trabalho com instalação de painéis solares.",
+  },
+  {
+    author: {
+      name: "Luciana Mendes",
+      handle: "Gesso Acartonado",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "Aulas práticas e profissionais qualificados. Valeu cada minuto investido. Aprendi técnicas que uso no dia a dia da minha profissão.",
   },
 ]
 
@@ -340,7 +373,12 @@ function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <TestimonialSlider testimonials={testimonials.map((t, index) => ({ ...t, id: index + 1 }))} />
+      <TestimonialsSection
+        title="Veja o que dizem nossos alunos"
+        description="Histórias reais de sucesso que transformaram vidas através dos nossos cursos profissionalizantes"
+        testimonials={testimonials}
+        className="bg-[#003366]"
+      />
 
       {/* Certificate Section */}
       <section className="py-20">
