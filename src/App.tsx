@@ -10,6 +10,7 @@ import { GlowingEffect } from "@/components/ui/glowing-effect"
 import { FeaturesSectionWithCardGradient } from "@/components/ui/features-section-gradient"
 import { RemotionHeroPlayer, RemotionConstructionPlayer } from "@/components/RemotionPlayer"
 import { AnimatedCourseCard } from "@/components/AnimatedCourseCard"
+import { AnimatedCounters } from "@/components/AnimatedCounters"
 import { motion } from "framer-motion"
 
 
@@ -289,6 +290,9 @@ function HomePage() {
               Eletricista, Mestre de Obras, Pedreiro e Instalador de Ar-Condicionado.
             </h2>
           </div>
+
+          {/* Contadores Animados */}
+          <AnimatedCounters className="px-4" />
 
 
           {/* Features Section */}
