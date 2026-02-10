@@ -1,15 +1,16 @@
 import { useState } from "react"
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { ChevronRight, CheckCircle2, GraduationCap, Award, Users, MapPin, Zap, Wrench, HardHat } from "lucide-react"
+import { CheckCircle2, GraduationCap, Award, Users, MapPin, Zap, Wrench, HardHat } from "lucide-react"
 import { courses } from "@/data/courses"
 import CoursePage from "@/pages/CoursePage"
 import TestimonialSlider from "@/components/ui/testimonial-slider"
 import { GlowingEffect } from "@/components/ui/glowing-effect"
 import { FeaturesSectionWithCardGradient } from "@/components/ui/features-section-gradient"
-import { DisplayCardsDemo } from "@/components/ui/demo"
+import { RemotionHeroPlayer, RemotionConstructionPlayer } from "@/components/RemotionPlayer"
+import { AnimatedCourseCard } from "@/components/AnimatedCourseCard"
+import { motion } from "framer-motion"
 
 
 const testimonials = [
@@ -142,21 +143,20 @@ function HomePage() {
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Hero Section com Vídeo Animado Remotion */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#004499] via-[#0066CC] to-[#0088FF] pt-20">
         <div className="absolute inset-0 bg-black/20" />
         <div className="container mx-auto px-4 py-20 relative z-10">
+          {/* Remotion Video Banner */}
+          <div className="max-w-6xl mx-auto mb-12">
+            <RemotionHeroPlayer
+              title="Profissionalize-se na Construção Civil"
+              subtitle="Cursos completos e certificação oficial em todo o Brasil"
+              className="shadow-2xl"
+            />
+          </div>
+
           <div className="max-w-5xl mx-auto text-center text-white">
-            <div className="inline-block bg-[#FFD700] text-black px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-fade-in-up">
-              +100 mil profissionais formados desde 2011
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
-              Profissionalize-se na Construção Civil com cursos completos e certificação oficial em todo o{" "}
-              <span className="text-[#FFD700]">Brasil</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 animate-fade-in-up">
-              Aulas práticas, turmas reduzidas e certificação reconhecida em todo o território nacional.
-            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button size="lg" className="bg-[#FFD700] text-black hover:bg-[#FFD700]/80 hover:scale-105 hover:shadow-xl hover:shadow-yellow-500/50 transition-all duration-300 text-lg px-8 animate-fade-in-up">
                 Falar com um consultor
@@ -173,43 +173,34 @@ function HomePage() {
                 </div>
               ))}
             </div>
-           </div>
-         </div>
+          </div>
+        </div>
       </section>
 
       {/* Cursos Section */}
       <section id="cursos" className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Se especialize com quem entende do assunto</h2>
             <p className="text-lg text-gray-600">O Instituto da Construção está pronto para te preparar pro mercado!</p>
-          </div>
+          </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.map((course) => (
-              <Link key={course.id} to={`/curso/${course.id}`} className="group">
-                <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full border-2 hover:border-[#0066CC]/30">
-                  <div className="h-48 bg-gray-200 overflow-hidden relative">
-                    <img
-                      src={course.image}
-                      alt={course.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <CardHeader>
-                    <CardTitle className="text-xl group-hover:text-[#0066CC] transition-colors">{course.title}</CardTitle>
-                    <CardDescription>{course.shortDescription}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-sm text-gray-600 line-clamp-3">{course.fullDescription}</p>
-                  </CardContent>
-                  <CardFooter>
-                    <Button className="w-full bg-[#0066CC] hover:bg-[#0066CC]/80 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 group-hover:bg-[#FFD700] group-hover:text-black">
-                      Quero este curso <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </Link>
+            {courses.map((course, index) => (
+              <AnimatedCourseCard
+                key={course.id}
+                id={course.id}
+                title={course.title}
+                shortDescription={course.shortDescription}
+                fullDescription={course.fullDescription}
+                image={course.image}
+                index={index}
+              />
             ))}
           </div>
         </div>
@@ -227,6 +218,12 @@ function HomePage() {
               O setor segue em constante crescimento e precisa cada vez mais de profissionais preparados,
               o que abre portas para quem busca oportunidade imediata e qualificação prática.
             </p>
+
+            {/* Remotion Construction Animation */}
+            <div className="flex justify-center mb-12">
+              <RemotionConstructionPlayer className="shadow-xl" />
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {careerReasons.map((reason, index) => (
                 <div

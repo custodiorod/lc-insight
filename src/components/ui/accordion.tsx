@@ -1,21 +1,5 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
-
-const accordionVariants = cva(
-  "border-b",
-  {
-    variants: {
-      variant: {
-        default: "border-border",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-)
 
 interface AccordionContextValue {
   value: string[]
